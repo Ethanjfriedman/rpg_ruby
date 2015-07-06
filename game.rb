@@ -7,7 +7,7 @@ require_relative 'party'
 
 class Game
 
-  attr_reader :heroes, :myParty, :monsters
+  attr_reader :heroes, :myParty, :monsters, :monsterParty
 
   def initialize
     @heroes = [
@@ -79,6 +79,7 @@ class Game
     ]
 
     @myParty = []
+    @monsterParty = []
   end
 
   def enlist_heroes
@@ -100,6 +101,7 @@ class Game
         heroes.slice!(newHero)
         puts "Remaining heroes:"
         display_heroes_for_hire
+
       end
 
       play
@@ -114,9 +116,20 @@ class Game
     end
   end
 
+
+
   def enter_forest
     puts "You're in the forest! OF DOOM"
     #generate a MonsterParty
+    @monsterParty = MonsterParty.new()
+
+    while @monsterParty.alive.length < 2 do
+      newMonsterIndex = rand(monsters.length)
+      monsterParty.enroll(monsters[newMonsterIndex])
+      monsters.slice!(newMonsterIndex)
+    end
+
+    puts @monsterParty.alive
     #make them fight
     #if at least one hero is alive, loot the monsters and return to town_message
     #if the monsters win, display losing message
