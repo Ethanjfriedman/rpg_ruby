@@ -1,5 +1,6 @@
 require_relative 'entity'
 class Hero < Entity
+
   def initialize(opts = {})
     @xp = @gold = 0
 
@@ -13,5 +14,8 @@ class Hero < Entity
   end
 end
 
+
 # my_weapon = Weapon.new(name: "longsword", damage: 3)
 # my_hero = Hero.new(name: "Artemis", hp: 20, weapon: my_weapon)
+
+#HeroParty.alive.push Hero.new(heroes[i])
