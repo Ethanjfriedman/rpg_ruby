@@ -3,7 +3,7 @@ require 'pry'
 require_relative 'hero'
 require_relative 'monster'
 require_relative 'party'
-
+require_relative 'shop'
 
 class Game
 
@@ -78,6 +78,7 @@ class Game
       }
     ]
 
+    @shop = Shop.new
     @myParty = []
     @monsterParty = []
   end
@@ -135,7 +136,7 @@ class Game
   end
 
   def enter_shop
-    puts "Welcome to Sears"
+    @shop.enter(@heroes)
   end
 
   def town_message
