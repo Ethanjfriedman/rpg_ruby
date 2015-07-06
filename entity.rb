@@ -7,7 +7,7 @@ class Entity
     @name = opts[:name]
     @max_hp = opts[:hp]
     @current_hp = @max_hp
-    @weapon = opts[:weapon] || default_weapon
+    @weapon = opts[:weapon] || opts[:default_weapon]
   end
 
   def is_dead?

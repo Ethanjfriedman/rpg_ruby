@@ -124,13 +124,12 @@ class Game
     @monsterParty = MonsterParty.new()
 
     while @monsterParty.alive.length < 2 do
-      newMonsterIndex = rand(monsters.length)
-      monsterParty.enroll(monsters[newMonsterIndex])
-      monsters.slice!(newMonsterIndex)
+      monsterParty.enroll(monsters.shuffle!.pop)
     end
 
-    puts @monsterParty.alive
+  #  puts @monsterParty.alive
     #make them fight
+    myParty.attack(monsterParty)
     #if at least one hero is alive, loot the monsters and return to town_message
     #if the monsters win, display losing message
   end

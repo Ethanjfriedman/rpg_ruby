@@ -5,7 +5,7 @@ class Monster < Entity
     @xp = opts[:xp] || 1
     @gold = opts[:gold] || 10
 
-    default_weapon = Weapon.new({
+    opts[:default_weapon] = Weapon.new({
       name: 'claws',
       damage: 3,
       price: 0
