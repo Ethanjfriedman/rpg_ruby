@@ -6,21 +6,20 @@ class Party
     @dead = []
   end
 
-  def enroll(member)
+  def enroll(member) #add a member to the party
+    member.current_hp = member.max_hp
     @alive.push(member)
-    #add a member to the party
   end
 
   def any?
-    @alive.any?
-    # should return true if the party has surviving members
+    @alive.any? # should return true if the party has surviving members
   end
 
   def none?
     !any? #should return true if the party has no surviving members
   end
 
-  def cleanup_the_dead
+  def cleanup_the_dead #remove dead members from @alive and insert into @dead
     the_dead = @alive.select { |fighter| fighter.is_dead? }
     @alive -= the_dead
     @dead += the_dead
@@ -35,18 +34,23 @@ class HeroParty < Party
   end
 
   def attack(opposing_party)
-    # sending message to user, asking which monster to attack
-    puts "Choose target:"
-    opposing_party.alive.each_with_index do |monster, index|
-      puts "#{index}. Name: #{monster[:name]}"
-      if monster[:current_hp]
-        puts "   Current HP: #{monster[:current_hp]}"
-      else
-        puts "   Current HP: #{monster[:max_hp]}"
+    # sending message to user, asking which monster each hero should attack
+    @alive.each do |hero|
+      puts "Choose target for #{hero.name}:"
+      opposing_party.alive.each_with_index do |monster, index|
+        puts "#{index}. Name: #{monster[:name]}"
+        if monster[:current_hp]
+          puts "   Current HP: #{monster[:current_hp]}"
+        else
+          monster[:current_hp] = monster[:max_hp]
+          puts "   Current HP: #{monster[:max_hp]}"
+        end
+        puts "   Weapon: #{monster[:weapon]}"
       end
-      puts "   Weapon: #{monster[:weapon]}"
-    end
+      target = gets.chomp.to_i
+      puts " His HP:  #{opposing_party.alive[target][:current_hp]} "
 
+    end
     # opposing_party.cleanup_the_dead
     # if opposing_party.any?
     #   opposing_party.attack(self)
@@ -60,8 +64,7 @@ class HeroParty < Party
 end
 
 class MonsterParty < Party
-  def attack(opposing_party)
-    # randomly choose a member of the opposing_party and attack it
+  def attack(opposing_party) # randomly choose a member of the opposing_party and attack it
     opposing_party.cleanup_the_dead
 
     #if opposing_party.any?

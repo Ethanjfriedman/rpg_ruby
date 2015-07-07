@@ -27,7 +27,7 @@ class Game
       {
         name: "Matthew Short",
         max_hp: 20,
-        weapon: Weapon.new(name: "MacBook Air", damage: 3)
+        weapon: Weapon.new(name: "MacBook Air of Smiting +2", damage: 3)
       }
     ]
 
