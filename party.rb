@@ -7,7 +7,7 @@ class Party
   end
 
   def enroll(member) #add a member to the party
-    member.current_hp = member.max_hp
+
     @alive.push(member)
   end
 
@@ -48,7 +48,10 @@ class HeroParty < Party
         puts "   Weapon: #{monster[:weapon]}"
       end
       target = gets.chomp.to_i
-      puts " His HP:  #{opposing_party.alive[target][:current_hp]} "
+      opposing_party.alive[target][:current_hp] -= hero.weapon.damage
+      puts "#{["Pow", "Bam", "Smash"].sample}! #{hero.name} attacks for #{hero.weapon.damage} damage"
+      puts " #{opposing_party.alive[target][:name]} now has #{opposing_party.alive[target][:current_hp]} hp"
+
 
     end
     # opposing_party.cleanup_the_dead
