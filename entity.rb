@@ -5,7 +5,7 @@ class Entity
 
   def initialize(opts = {})
     @name = opts[:name]
-    @max_hp = opts[:hp]
+    @max_hp = opts[:max_hp].to_i
     @current_hp = @max_hp
     @weapon = opts[:weapon] || opts[:default_weapon]
   end

@@ -12,21 +12,21 @@ class Game
   def initialize
     @heroes = [
       { "name": "Artemis",
-        "hp": 20,
+        max_hp: 20,
         weapon: Weapon.new(name: "Longsword", damage: 3)
       },
       {
         name: "Hulk Hogan",
-        hp: 30
+        max_hp: 30
       },
       {
         name: "Mr. Hat",
-        hp: 10,
+        max_hp: 10,
         weapon: Weapon.new(name: "Flying hat", damage: 5)
       },
       {
         name: "Matthew Short",
-        hp: 20,
+        max_hp: 20,
         weapon: Weapon.new(name: "MacBook Air", damage: 3)
       }
     ]
@@ -34,7 +34,7 @@ class Game
     @monsters = [
       {
         name: "Goblin, father of 7",
-        hp: 9,
+        max_hp: 9,
         weapon: Weapon.new({
           name: "his wife's rusty last kitchen knife",
           damage: 1,
@@ -45,7 +45,7 @@ class Game
       },
       {
         name: "Mitt Romney",
-        hp: 22,
+        max_hp: 22,
         weapon: Weapon.new({
           name: "fat stacks",
           damage: 2,
@@ -56,7 +56,7 @@ class Game
       },
       {
         name: "Bowser",
-        hp: 30,
+        max_hp: 30,
         weapon: Weapon.new({
           name: "Fireballs",
           damage: 10,
@@ -67,7 +67,7 @@ class Game
       },
       {
         name: "Antonin Scalia",
-        hp: 10,
+        max_hp: 10,
         weapon: Weapon.new({
           name: "Withering dissents",
           damage: 12,
@@ -112,7 +112,7 @@ class Game
     hero_counter = 0
     while hero_counter < @heroes.length do
       currentHero = @heroes[hero_counter]
-      puts " #{hero_counter}. Name: #{currentHero[:name]}, HP: #{currentHero[:hp]}, weapon: #{currentHero[:weapon]}"
+      puts " #{hero_counter}. Name: #{currentHero[:name]}, HP: #{currentHero[:max_hp]}, weapon: #{currentHero[:weapon]}"
       hero_counter += 1
     end
   end
@@ -128,7 +128,6 @@ class Game
       monsterParty.enroll(monsters.shuffle!.pop)
     end
 
-  #  puts @monsterParty.alive
     #make them fight
     myParty.attack(monsterParty)
     #if at least one hero is alive, loot the monsters and return to town_message
@@ -136,7 +135,7 @@ class Game
   end
 
   def enter_shop
-    @shop.enter(@heroes)
+    # @shop.enter(@heroes)
   end
 
   def town_message

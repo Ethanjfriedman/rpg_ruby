@@ -28,7 +28,7 @@ class Party
 end
 
 class HeroParty < Party
-    
+
   def initialize
     @gold = 0
     super
@@ -37,8 +37,14 @@ class HeroParty < Party
   def attack(opposing_party)
     # sending message to user, asking which monster to attack
     puts "Choose target:"
-    opposing_party.alive.each do |monster|
-      puts "Name: #{monster[:name]}, HP: #{monster[:current_hp]}"
+    opposing_party.alive.each_with_index do |monster, index|
+      puts "#{index}. Name: #{monster[:name]}"
+      if monster[:current_hp]
+        puts "   Current HP: #{monster[:current_hp]}"
+      else
+        puts "   Current HP: #{monster[:max_hp]}"
+      end
+      puts "   Weapon: #{monster[:weapon]}"
     end
 
     # opposing_party.cleanup_the_dead
